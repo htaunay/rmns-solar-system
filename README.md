@@ -18,3 +18,14 @@ will trigger the automaitc velocity adjustment.
 ## Controls
 
 WASD for translation + Mouse for rotation.
+
+## Screenshots
+
+![RMNS Solar System - Screenshot 1]
+(https://github.com/htaunay/rmns-solar-system/blob/master/Screenshots/ss1.png)
+
+![RMNS Solar System - Screenshot 2]
+(https://github.com/htaunay/rmns-solar-system/blob/master/Screenshots/ss2.png)
+
+![RMNS Solar System - Screenshot 3]
+(https://github.com/htaunay/rmns-solar-system/blob/master/Screenshots/ss3.png)
