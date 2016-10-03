@@ -1,12 +1,12 @@
 # Solar System - RMNS Demo
 
-This is a demo made in Unity3D As a showcase for the
+This is a demo made in Unity3D as a showcase for the
 [RMNS tool](https://github.com/htaunay/rmns).
 
 ## Running the demo
 
 * Open the project folder with Unity3D 4 or 5.
-* Set the server's url and port at the **Url** from the **Server**
+* Set the server's url and port at the **Url** field from the **Server**
 component, located at the **Main** GameObject.
 * Press play to start the scene. The scene's points and spheres will be
 registered automatically.
