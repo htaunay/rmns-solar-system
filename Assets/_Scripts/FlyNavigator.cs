@@ -3,10 +3,10 @@ using System.Collections;
 
 public class FlyNavigator : MonoBehaviour
 {
-	[SerializeField]
-	private bool Activate = false;
+	public enum NavigationMode { Manual, Automatic };
 
-	private int activateState = 0;
+	[SerializeField]
+	private NavigationMode Mode = NavigationMode.Manual;
 
 	[SerializeField]
 	private float translationSpeed = 1;
@@ -14,22 +14,22 @@ public class FlyNavigator : MonoBehaviour
 	[SerializeField]
 	private float rotationSpeed = 50;
 
+	private float lastMouseRoll = 0;
+
+	[SerializeField]
+	private float mouseWheelPotency = 1f;
+
+	private GUIStyle style = new GUIStyle();
+
+	private void Start()
+	{
+		style.fontSize = 36;
+		style.normal.textColor = Color.yellow;
+	}
+
 	private void OnGUI ()
 	{
-		transform.eulerAngles += GetRotation();
-		transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
-
-		transform.Translate(GetTranslation());
-
-		if(Input.GetKeyUp(KeyCode.M))
-		{
-			activateState++;
-			if(activateState >= 2)
-			{
-				activateState = 0;
-				Activate = !Activate;
-			}
-		}
+		GUI.Label(new Rect(20, 30, 100, 50), (translationSpeed / 150.0f) + " AU/s", style);
 	}
 
 	private Vector3 GetRotation()
@@ -68,9 +68,25 @@ public class FlyNavigator : MonoBehaviour
 		translationSpeed = speed;
 	}
 
-	private void FixedUpdate()
+	private void Update()
 	{
-		if(Activate)
-			Server.Instance.UpdateTranslationSpeed(transform.position, this);
+		transform.eulerAngles += GetRotation();
+		transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
+
+		transform.Translate(GetTranslation());
+
+		if (Input.GetKeyDown (KeyCode.M))
+			Mode = (Mode == NavigationMode.Manual) ? NavigationMode.Automatic : NavigationMode.Manual;
+
+		// Update speed
+		if (Mode == NavigationMode.Automatic) {
+			Server.Instance.UpdateTranslationSpeed (transform.position, this);
+		}
+		else {
+			float speedVariation = (Input.GetAxis ("Mouse ScrollWheel") * mouseWheelPotency) + 1;
+
+			translationSpeed *= speedVariation;
+			translationSpeed = Mathf.Clamp (translationSpeed, 0.1f, 100f);
+		}
 	}
 }
