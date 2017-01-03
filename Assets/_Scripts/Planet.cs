@@ -99,7 +99,7 @@ public class Planet : MonoBehaviour
 		GameObject pointObj = new GameObject ("Planet Core");
 		pointObj.AddComponent<MeshFilter>();
 		pointObj.AddComponent<MeshRenderer>();
-		pointObj.renderer.material = material;
+		pointObj.GetComponent<Renderer>().material = material;
 
 		Mesh mesh = new Mesh ();
 		mesh.vertices = new Vector3[]{Vector3.zero,Vector3.right,Vector3.up};

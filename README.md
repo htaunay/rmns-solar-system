@@ -5,7 +5,7 @@ This is a demo made in Unity3D as a showcase for the
 
 ## Running the demo
 
-* Open the project folder with Unity3D 4 or 5.
+* Open the project folder with Unity3D 5.
 * Set the server's url and port at the **Url** field from the **Server**
 component, located at the **Main** GameObject.
 * Press play to start the scene. The scene's points and spheres will be

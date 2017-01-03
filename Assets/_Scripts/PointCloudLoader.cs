@@ -102,7 +102,7 @@ public class PointCloudLoader : MonoBehaviour
 		GameObject pointGroup = new GameObject (name + meshInd);
 		pointGroup.AddComponent<MeshFilter>();
 		pointGroup.AddComponent<MeshRenderer>();
-		pointGroup.renderer.material = material;
+		pointGroup.GetComponent<Renderer>().material = material;
 		
 		pointGroup.GetComponent<MeshFilter>().mesh = CreateMesh(points, meshInd, nPoints, POINT_LIMIT);
 		pointGroup.transform.parent = root.transform;
